@@ -1,6 +1,6 @@
 # 我是大老板 · The Boss Club
 
-《I'm the Boss!》中文浏览器数字桌游。3–6 个座位，自由组合真人与基础电脑玩家，支持同一台设备交接手牌、完整谈判与终局。深绿会所桌面、木质棋盘、黄铜棋子与原版投资人人像。
+《I'm the Boss!》中文浏览器 / MyGo 桌面数字桌游。3–6 个座位，自由组合真人与基础电脑玩家，支持同一台设备交接手牌、完整谈判与终局。深绿会所桌面、木质棋盘、黄铜棋子与原版投资人人像。
 
 ## 启动
 
@@ -20,6 +20,28 @@ npm run preview
 ```
 
 生产文件在 `dist/`，无需后端，包含本地字体、人像与 Web Audio 合成音效。通过 HTTP 静态服务打开；不要直接双击 `dist/index.html`。运行后没有在线 API、登录或 LLM 依赖。
+
+## MyGo 客户端
+
+安装 Go 1.27.3 或更新版本并加入 `PATH`，然后执行：
+
+```sh
+npm ci
+npm run desktop:doctor
+npm run desktop:build
+```
+
+MyGo、运行时及 Bun 均由项目锁定版本安装。macOS Apple Silicon 的产物在 `build/darwin-arm64/`：`我是大老板.app` 可直接打开，`the-boss-1.0.0-arm64.dmg` 可拖入“应用程序”。客户端内嵌全部网页资源，无需 Node.js、Go、服务器或网络即可游玩。
+
+```sh
+npm run desktop:dev             # 原生开发窗口 + Vite 热更新，端口 5174
+npm run desktop:generate        # 更新 Go → TypeScript 文件接口
+go test ./...                  # 原生文件服务校验
+# 可选：其他平台，运行测试须在对应系统进行
+npm run desktop:build -- -platform darwin/universal,windows/amd64,linux/amd64
+```
+
+桌面版提供原生菜单、全屏、窗口位置记忆和系统存档导入/导出对话框。进度保存在应用自己的 WebView 持久存储中，与浏览器及开发版分开；通过 JSON 导入/导出迁移对局。详见 [客户端构建说明](docs/DESKTOP.md)。
 
 ## 怎么玩
 
@@ -59,6 +81,9 @@ src/agents/basic.ts       只读取本人观察的基础电脑策略
 src/ui/                  棋盘、座位、谈判、设置、规则和声音
 src/App.tsx              本地调度、界面状态、存档与隐私交接
 src/styles.css           会所风格、2.5D 材质、响应式与减少动态效果
+src/platform/            浏览器 / MyGo 文件适配与生成的类型桥接
+main.go                  MyGo 窗口、菜单、原生存档文件接口
+mygo.config.ts           应用标识、版本、打包与开发配置
 public/assets/           本地人像、字体及字体授权文本
 tests/game.test.ts       规则、官方示例、完整对局和边界测试
 docs/ARCHITECTURE.md      MyGo/LLM 扩展点与状态机说明
@@ -69,6 +94,6 @@ reference/               原书、组件转录与研究证据
 
 基础电脑使用确定性启发式：选组合、要价/接受、公开团队、招募、部分旅行威胁、抢老板和防守；不理解自由文本，不使用 LLM，也不承诺达到真人谈判水平。本地存档有结构与守恒校验，不是防作弊的联网权威服务器。当前是本地同屏多人，不是跨设备联机。
 
-MyGo 桌面壳尚未创建；静态产物和纯 TypeScript 引擎已为后续 WebView/Go 桥接留出清晰边界。
+MyGo 客户端使用系统 WebView，规则引擎与电脑策略保持独立。当前 macOS 构建为 ad-hoc 本机签名，没有 Developer ID 公证；正式对外分发需配置发行证书。Windows/Linux 可用同一配置构建，但尚未实机验证。
 
 游戏设计 Sid Sackson。原版画像与组件图版权属于作者/出版商；本仓库用于用户请求的本地复刻，未公开发布。字体使用 SIL OFL，许可证位于 `public/assets/`。

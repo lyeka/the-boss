@@ -55,6 +55,7 @@ import { Setup } from "./ui/Setup";
 import { Rules } from "./ui/Rules";
 import { Negotiation } from "./ui/Negotiation";
 import { sound } from "./ui/sound";
+import { exportGameFile, importGameFile, isDesktop } from "./platform/files";
 import "./styles.css";
 const SAVE_KEY = "the-boss.save.v1";
 const defaultPlayers: PlayerConfig[] = [
@@ -293,16 +294,40 @@ export default function App() {
     setSelectedCard(null);
     setHandoff(id);
   }
-  function exportSave() {
-    const blob = new Blob([JSON.stringify(s, null, 2)], {
-        type: "application/json",
-      }),
-      url = URL.createObjectURL(blob),
-      a = document.createElement("a");
-    a.href = url;
-    a.download = `the-boss-${new Date().toISOString().slice(0, 10)}-turn-${s.turn}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+  async function exportSave() {
+    try {
+      await exportGameFile(
+        `the-boss-${new Date().toISOString().slice(0, 10)}-turn-${s.turn}.json`,
+        JSON.stringify(s, null, 2),
+      );
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "存档导出失败");
+    }
+  }
+  function loadSave(raw: string) {
+    const next = restoreGame(raw);
+    setState(next);
+    setStarted(true);
+    setSetup(false);
+    setMenu(false);
+    setSelectedCard(null);
+    const human = next.players.find((p) => p.kind === "human")?.id ?? 0;
+    setViewer(human);
+    setHandoff(human);
+    setError("");
+    setInspect(null);
+  }
+  async function importSave() {
+    if (!isDesktop()) {
+      fileInput.current?.click();
+      return;
+    }
+    try {
+      const raw = await importGameFile();
+      if (raw) loadSave(raw);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "存档不可用");
+    }
   }
   function chooseCard(c: Card) {
     setSelectedCard(c);
@@ -439,7 +464,7 @@ export default function App() {
             <Download size={17} />
             导出对局存档
           </button>
-          <button onClick={() => fileInput.current?.click()}>
+          <button onClick={importSave}>
             <Upload size={17} />
             导入存档
           </button>
@@ -456,17 +481,7 @@ export default function App() {
           const file = e.target.files?.[0];
           if (file) {
             try {
-              const next = restoreGame(await file.text());
-              setState(next);
-              setStarted(true);
-              setSetup(false);
-              setMenu(false);
-              const human =
-                next.players.find((p) => p.kind === "human")?.id ?? 0;
-              setViewer(human);
-              setHandoff(human);
-              setError("");
-              setInspect(null);
+              loadSave(await file.text());
             } catch (err) {
               setError(err instanceof Error ? err.message : "存档不可用");
             }

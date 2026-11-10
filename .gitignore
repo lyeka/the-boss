@@ -12,3 +12,5 @@ reference/*.html
 reference/content-stream.txt
 reference/dividend-image.json
 reference/publisher-product.json
+build/
+.mygo/

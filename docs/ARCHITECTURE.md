@@ -79,6 +79,8 @@ stateDiagram-v2
 
 ## MyGo / 桌面封装
 
-`npm run build` 得到相对路径静态产物，可嵌入 WebView。保留 `engine` 与 `agents` 原样；将 App 中的 localStorage 包成 `StorageAdapter` 后替换为 Go 的 JSON 文件持久化；将电脑定时调度替换为 Worker 或 Go bridge。Web Audio 是可选项，WebView 不支持时不影响游戏。
+`npm run desktop:build` 用 MyGo 0.8.3 把 Vite 的 `dist/` 嵌入 Go 可执行文件，生产页面从 `mygo://localhost/` 加载。`main.go` 管理原生窗口、菜单和文件对话框；`src/platform/files.ts` 用 `isMyGo()` 分流浏览器下载与原生保存，`src/platform/mygo.ts` 由 MyGo 根据 Go 方法生成。`engine` 与 `agents` 无桌面依赖。
+
+原生文件服务只读写用户在系统对话框中选择的 JSON，限制 16 MB，导出采用同目录临时文件、flush 和 rename。导入后仍由 `restoreGame` 校验完整游戏规则。自动进度继续使用应用 WebView 的持久 localStorage，与浏览器 / 开发版的 origin 分离；可用 JSON 文件迁移。将来可把自动存储替换为 `App.Path(PathUserData)` 下的原生文件，再按需将电脑调度迁移到 Worker 或 Go bridge。Web Audio 是可选项，不可用时不影响规则引擎。
 
 如扩展为联机，应由服务器独占真实 `State` 和随机源，客户端只收各自 `Observation`；用版本号串行化实时出牌并在服务端执行响应窗口。现有同屏版本的 JSON 导出包含全部牌，不具备联机防作弊能力。

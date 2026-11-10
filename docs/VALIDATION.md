@@ -17,3 +17,11 @@
 自动对局为规则引擎和电脑决策层的全程验证；浏览器操作验证一笔完整交易及关键交互，未将其夸大为 41 局逐一浏览器人工验证。
 
 原版组件核验范围和未取得的逐张背面照片参见 `../reference/verification-notes.md`。单元测试验证实现一致性，不能替代尚未取得的实物证据。
+
+## MyGo 客户端补充验证（2026-11-10）
+
+- MyGo 0.8.3 / Go 1.27.3 / macOS 14.4.1 arm64，生成内嵌前端的 `.app` 和 `.dmg`。
+- 68 项规则回归、2 项 Go 文件服务测试通过；TypeScript、Vite、原生编译通过。
+- 独立 QA 应用用官方 automation 插件验证真实 WKWebView：`mygo://localhost/`、图片加载、无横向溢出、AudioContext、开局、桥接拒绝无效 JSON、关闭重开存档逐字一致、重开时隐私遮罩。
+- 系统保存 / 打开对话框实际导出与读回 JSON 内容一致；取消导出返回 false，取消导入返回空字符串。
+- 正式版排除 automation 插件；ad-hoc 签名校验和 DMG 校验和通过。未做 Developer ID 公证或 Windows/Linux 实机验证。
