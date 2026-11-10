@@ -1,0 +1,323 @@
+[
+  {
+    "id": 0,
+    "name": "",
+    "dividends": 6,
+    "groups": [
+      {
+        "teams": [
+          "red",
+          "yellow",
+          "blue"
+        ],
+        "count": 3
+      },
+      {
+        "teams": [
+          "orange",
+          "purple",
+          "green"
+        ],
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "",
+    "dividends": 4,
+    "groups": [
+      {
+        "teams": [
+          "yellow"
+        ],
+        "count": 1
+      },
+      {
+        "teams": [
+          "purple",
+          "blue"
+        ],
+        "count": 1
+      },
+      {
+        "teams": [
+          "green",
+          "red"
+        ],
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "",
+    "dividends": 3,
+    "groups": [
+      {
+        "teams": [
+          "purple",
+          "orange"
+        ],
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "",
+    "dividends": 4,
+    "groups": [
+      {
+        "teams": [
+          "purple",
+          "yellow",
+          "orange",
+          "red"
+        ],
+        "count": 3
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "",
+    "dividends": 6,
+    "groups": [
+      {
+        "teams": [
+          "blue",
+          "red"
+        ],
+        "count": 2
+      },
+      {
+        "teams": [
+          "orange",
+          "yellow",
+          "green",
+          "purple"
+        ],
+        "count": 3
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "",
+    "dividends": 5,
+    "groups": [
+      {
+        "teams": [
+          "red",
+          "yellow",
+          "blue",
+          "orange",
+          "purple",
+          "green"
+        ],
+        "count": 4
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "",
+    "dividends": 4,
+    "groups": [
+      {
+        "teams": [
+          "red",
+          "orange",
+          "blue"
+        ],
+        "count": 3
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "",
+    "dividends": 5,
+    "groups": [
+      {
+        "teams": [
+          "yellow",
+          "orange",
+          "purple"
+        ],
+        "count": 2
+      },
+      {
+        "teams": [
+          "red",
+          "blue",
+          "green"
+        ],
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "",
+    "dividends": 6,
+    "groups": [
+      {
+        "teams": [
+          "orange",
+          "blue",
+          "red",
+          "yellow"
+        ],
+        "count": 3
+      },
+      {
+        "teams": [
+          "green",
+          "purple"
+        ],
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "",
+    "dividends": 4,
+    "groups": [
+      {
+        "teams": [
+          "yellow",
+          "blue"
+        ],
+        "count": 1
+      },
+      {
+        "teams": [
+          "purple",
+          "green"
+        ],
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "",
+    "dividends": 4,
+    "groups": [
+      {
+        "teams": [
+          "green",
+          "orange"
+        ],
+        "count": 1
+      },
+      {
+        "teams": [
+          "red",
+          "purple"
+        ],
+        "count": 1
+      },
+      {
+        "teams": [
+          "blue",
+          "yellow"
+        ],
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "",
+    "dividends": 3,
+    "groups": [
+      {
+        "teams": [
+          "green",
+          "yellow"
+        ],
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "",
+    "dividends": 6,
+    "groups": [
+      {
+        "teams": [
+          "green",
+          "orange",
+          "red",
+          "yellow",
+          "purple"
+        ],
+        "count": 4
+      },
+      {
+        "teams": [
+          "blue"
+        ],
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "",
+    "dividends": 3,
+    "groups": [
+      {
+        "teams": [
+          "blue",
+          "red"
+        ],
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "",
+    "dividends": 5,
+    "groups": [
+      {
+        "teams": [
+          "yellow",
+          "green",
+          "purple",
+          "orange",
+          "red"
+        ],
+        "count": 4
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "",
+    "dividends": 4,
+    "groups": [
+      {
+        "teams": [
+          "yellow",
+          "blue",
+          "orange"
+        ],
+        "count": 2
+      },
+      {
+        "teams": [
+          "purple",
+          "green"
+        ],
+        "count": 1
+      }
+    ]
+  }
+]

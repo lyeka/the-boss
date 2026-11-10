@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.DS_Store
+*.tsbuildinfo
+reference/*.png
+reference/*.jpg
+reference/*.jpeg
+reference/rules.txt
+.openai/
+.impeccable/
+reference/*.html
+reference/content-stream.txt
+reference/dividend-image.json
+reference/publisher-product.json
